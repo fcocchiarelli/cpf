@@ -1,0 +1,56 @@
+# verificação de CPF
+
+linha = '-'*70
+titulo = 'Verificador de CPF'
+print (linha)
+print(titulo.upper().center(70))
+print(linha)
+print()
+
+cpf = int(input('digite o CPF - somente números: '))
+seq = cpf//10
+dv = cpf%100
+
+
+#somador da sequência
+
+def somador(seq):
+  soma = 0
+  soma1 = 0
+  dig = 2
+
+  while seq%10 != 0:
+    soma1 = soma1 + ((seq%10)*dig)
+    soma = soma + soma1
+    seq = seq//10
+    dig = dig + 1
+    soma1 = 0
+  return soma
+
+# verificar 1 dígito
+
+soma=somador((seq//10))
+verificador1 = 11 - (soma%11)
+if verificador1 >= 10:
+  dv1 = 0
+else:
+  dv1 = verificador1*10
+
+# verificar 2 dígito
+
+soma=somador((seq))
+verificador2 = 11 - (soma%11)
+if verificador2 >= 10:
+  dv2 = 0
+else:
+  dv2 = verificador2
+
+# resultado
+
+print()
+if dv == (dv1+dv2):
+  print('CPF válido')
+else:
+  print('CPF inválido')
+print()
+print(linha)
